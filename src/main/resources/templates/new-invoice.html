@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>New Invoice - Perfect Meter InvoiceDesk</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+        background: #f5f7fb;
+        color: #1f2937;
+        min-height: 100vh;
+    }
+
+    /* NAVBAR */
+
+    .navbar {
+        height: 68px;
+        background: #ffffff;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 45px;
+
+        border-bottom: 1px solid #e5e7eb;
+
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .brand-logo {
+        width: 40px;
+        height: 40px;
+
+        background: #1e3a5f;
+        color: white;
+
+        border-radius: 8px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .brand-text h2 {
+        font-size: 18px;
+        color: #1e3a5f;
+    }
+
+    .brand-text span {
+        font-size: 12px;
+        color: #6b7280;
+    }
+
+    .back-link {
+        text-decoration: none;
+        color: #374151;
+
+        border: 1px solid #d1d5db;
+
+        padding: 9px 18px;
+
+        border-radius: 6px;
+
+        font-size: 14px;
+    }
+
+    .back-link:hover {
+        background: #f3f4f6;
+    }
+
+
+    /* MAIN */
+
+    .container {
+        max-width: 1000px;
+
+        margin: 40px auto;
+
+        padding: 0 20px;
+    }
+
+
+    .page-header {
+        margin-bottom: 25px;
+    }
+
+    .page-header h1 {
+        font-size: 28px;
+        color: #111827;
+        margin-bottom: 6px;
+    }
+
+    .page-header p {
+        color: #6b7280;
+        font-size: 14px;
+    }
+
+
+    /* FORM CARD */
+
+    .invoice-card {
+        background: white;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 12px;
+
+        padding: 35px;
+
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    }
+
+
+    /* TOP DETAILS */
+
+    .details {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 25px;
+
+        margin-bottom: 35px;
+    }
+
+    .form-group label {
+        display: block;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        color: #374151;
+
+        margin-bottom: 8px;
+    }
+
+    .form-group input {
+        width: 100%;
+
+        padding: 12px 13px;
+
+        border: 1px solid #d1d5db;
+
+        border-radius: 6px;
+
+        font-size: 14px;
+
+        outline: none;
+    }
+
+    .form-group input:focus {
+        border-color: #1e3a5f;
+
+        box-shadow: 0 0 0 2px rgba(30, 58, 95, 0.08);
+    }
+
+    .date-display {
+        background: #f9fafb;
+    }
+
+
+    /* TABLE */
+
+    .section-title {
+        font-size: 17px;
+
+        color: #111827;
+
+        margin-bottom: 15px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+
+        border-collapse: collapse;
+
+        border: 1px solid #e5e7eb;
+    }
+
+    th {
+        background: #f8fafc;
+
+        color: #374151;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        text-align: left;
+
+        padding: 13px;
+
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    td {
+        padding: 12px;
+
+        border-bottom: 1px solid #e5e7eb;
+
+        font-size: 14px;
+    }
+
+    td input {
+        width: 100%;
+
+        padding: 9px;
+
+        border: 1px solid #d1d5db;
+
+        border-radius: 5px;
+
+        font-size: 13px;
+    }
+
+    .amount {
+        font-weight: 600;
+        color: #1e3a5f;
+    }
+
+
+    /* TOTAL */
+
+    .total-section {
+        display: flex;
+
+        justify-content: flex-end;
+
+        margin-top: 25px;
+    }
+
+    .total-box {
+        width: 300px;
+
+        border-top: 2px solid #1e3a5f;
+
+        padding-top: 15px;
+    }
+
+    .total-row {
+        display: flex;
+
+        justify-content: space-between;
+
+        font-size: 20px;
+
+        font-weight: 700;
+
+        color: #111827;
+    }
+
+
+    /* BUTTONS */
+
+    .actions {
+        display: flex;
+
+        justify-content: flex-end;
+
+        gap: 12px;
+
+        margin-top: 35px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+
+        border-radius: 6px;
+
+        font-size: 14px;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        text-decoration: none;
+    }
+
+    .btn-secondary {
+        background: white;
+
+        color: #374151;
+
+        border: 1px solid #d1d5db;
+    }
+
+    .btn-secondary:hover {
+        background: #f9fafb;
+    }
+
+    .btn-primary {
+        background: #1e3a5f;
+
+        color: white;
+
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background: #274d78;
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+        .navbar {
+            padding: 0 18px;
+        }
+
+        .brand-text span {
+            display: none;
+        }
+
+        .container {
+            margin: 25px auto;
+        }
+
+        .invoice-card {
+            padding: 22px;
+        }
+
+        .details {
+            grid-template-columns: 1fr;
+        }
+
+        .actions {
+            flex-direction: column;
+        }
+
+        .btn {
+            text-align: center;
+            width: 100%;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="brand">
+
+        <div class="brand-logo">
+            PM
+        </div>
+
+        <div class="brand-text">
+
+            <h2>Perfect Meter</h2>
+
+            <span>InvoiceDesk</span>
+
+        </div>
+
+    </div>
+
+
+    <a href="/dashboard" class="back-link">
+        ← Dashboard
+    </a>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <div class="page-header">
+
+        <h1>New Invoice</h1>
+
+        <p>
+            Enter the vehicle number to create a new invoice.
+        </p>
+
+    </div>
+
+
+
+    <div class="invoice-card">
+
+
+        <!-- DETAILS -->
+
+        <div class="details">
+
+
+            <div class="form-group">
+
+                <label for="vehicleNumber">
+                    Vehicle Number
+                </label>
+
+                <input
+                    type="text"
+                    id="vehicleNumber"
+                    name="vehicleNumber"
+                    placeholder="e.g. MH12AB1234"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="invoiceDate">
+                    Invoice Date
+                </label>
+
+                <input
+                    type="text"
+                    id="invoiceDate"
+                    class="date-display"
+                    value="21/09/2026"
+                    readonly
+                >
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ITEMS -->
+
+        <h2 class="section-title">
+            Invoice Items
+        </h2>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th style="width: 45%;">
+                            Description
+                        </th>
+
+                        <th style="width: 15%;">
+                            Qty
+                        </th>
+
+                        <th style="width: 20%;">
+                            Price
+                        </th>
+
+                        <th style="width: 20%;">
+                            Amount
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <tr>
+
+                        <td>
+                            Meter Testing
+                        </td>
+
+                        <td>
+                            1
+                        </td>
+
+                        <td>
+                            ₹300
+                        </td>
+
+                        <td class="amount">
+                            ₹300
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Inspection Service
+                        </td>
+
+                        <td>
+                            1
+                        </td>
+
+                        <td>
+                            ₹250
+                        </td>
+
+                        <td class="amount">
+                            ₹250
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Documentation
+                        </td>
+
+                        <td>
+                            1
+                        </td>
+
+                        <td>
+                            ₹150
+                        </td>
+
+                        <td class="amount">
+                            ₹150
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <!-- TOTAL -->
+
+        <div class="total-section">
+
+            <div class="total-box">
+
+                <div class="total-row">
+
+                    <span>Total</span>
+
+                    <span>₹700</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ACTIONS -->
+
+        <div class="actions">
+
+            <a
+                href="/dashboard"
+                class="btn btn-secondary">
+                Cancel
+            </a>
+
+            <form
+                action="/generate-pdf"
+                method="get"
+                id="invoiceForm"
+                style="margin: 0;">
+
+                <input
+                    type="hidden"
+                    name="vehicleNumber"
+                    id="vehicleNumberHidden"
+                >
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    Generate Invoice
+                </button>
+
+            </form>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- PDF GENERATION SCRIPT -->
+
+<script>
+
+    document.getElementById("invoiceForm")
+        .addEventListener("submit", function(event) {
+
+            const vehicleNumber =
+                document.getElementById("vehicleNumber").value.trim();
+
+            if (vehicleNumber === "") {
+
+                event.preventDefault();
+
+                alert("Please enter the vehicle number.");
+
+                return;
+            }
+
+            document.getElementById("vehicleNumberHidden").value =
+                vehicleNumber;
+
+        });
+
+</script>
+```
+
+</body>
+
+</html>

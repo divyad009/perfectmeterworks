@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<style>
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #111111;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+}
+
+.page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 16mm 17mm;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+    width: 100%;
+    border-bottom: 2px solid #111;
+    padding-bottom: 6mm;
+    margin-bottom: 7mm;
+}
+
+.logo-area {
+    width: 25%;
+    float: left;
+    padding-top: 1mm;
+}
+
+.invoice-logo {
+    width: 22mm;
+    height: 22mm;
+    object-fit: contain;
+    display: block;
+}
+
+.from-area {
+width: 45%;
+float: left;
+padding-top: 0.5mm;
+margin-left: -10mm;
+}
+
+
+
+.from-label {
+    font-size: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.shop-name {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    margin-bottom: 4px;
+}
+
+.shop-address {
+    font-size: 8.5px;
+    line-height: 1.5;
+}
+
+.shop-contact {
+    font-size: 8.5px;
+    margin-top: 2px;
+    line-height: 1.45;
+}
+
+.invoice-heading {
+    width: 30%;
+    float: right;
+    text-align: right;
+    padding-top: 1mm;
+}
+
+.invoice-title {
+    font-size: 27px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.invoice-type {
+    font-size: 8px;
+    margin-top: 3px;
+    letter-spacing: 0.8px;
+}
+
+.clear {
+    clear: both;
+}
+
+/* ================= CUSTOMER INFO ================= */
+
+.info-section {
+    width: 100%;
+    margin-bottom: 8mm;
+}
+
+.bill-to {
+    width: 50%;
+    float: left;
+    border-left: 3px solid #111;
+    padding-left: 4mm;
+}
+
+.invoice-details {
+    width: 45%;
+    float: right;
+}
+
+.section-label {
+    font-size: 8px;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    margin-bottom: 3px;
+}
+
+.vehicle-number {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.detail-row {
+    width: 100%;
+    margin-bottom: 3px;
+}
+
+.detail-label {
+    display: inline-block;
+    width: 65px;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.detail-value {
+    font-size: 8.5px;
+}
+
+/* ================= TABLE ================= */
+
+.items-title {
+    font-size: 9px;
+    font-weight: bold;
+    letter-spacing: 0.7px;
+    margin-bottom: 3mm;
+}
+
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.items-table th {
+    background: #eeeeee;
+    border: 1px solid #111;
+    padding: 8px 7px;
+    font-size: 8.5px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.items-table td {
+    border: 1px solid #111;
+    padding: 8px 7px;
+    height: 17mm;
+    vertical-align: middle;
+    font-size: 9px;
+}
+
+.description {
+    width: 50%;
+    text-align: left;
+}
+
+.qty {
+    width: 12%;
+    text-align: center;
+}
+
+.price {
+    width: 19%;
+    text-align: right;
+}
+
+.amount {
+    width: 19%;
+    text-align: right;
+}
+
+.item-name {
+    font-size: 9.5px;
+    font-weight: bold;
+}
+
+.item-note {
+    font-size: 7.5px;
+    margin-top: 3px;
+}
+
+/* ================= SUMMARY ================= */
+
+.summary-section {
+    width: 100%;
+    margin-top: 5mm;
+}
+
+.summary-table {
+    width: 43%;
+    margin-left: auto;
+    border-collapse: collapse;
+}
+
+.summary-table td {
+    padding: 4px 7px;
+    font-size: 9px;
+}
+
+.summary-label {
+    text-align: left;
+    font-weight: bold;
+}
+
+.summary-value {
+    text-align: right;
+}
+
+.total-row {
+    border-top: 2px solid #111;
+}
+
+.total-row td {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+    margin-top: 27mm;
+    border-top: 1px solid #111;
+    padding-top: 5mm;
+}
+
+.terms-title {
+    font-size: 8.5px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.terms-text {
+    font-size: 7.5px;
+    line-height: 1.5;
+    margin-bottom: 8mm;
+}
+
+.thanks {
+    font-size: 9px;
+    font-weight: bold;
+}
+
+/* ================= SMALL FOOTER LINE ================= */
+
+.footer-bottom {
+    margin-top: 10mm;
+    text-align: center;
+    font-size: 7px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <div class="logo-area">
+            <img
+                src="images/logo.png"
+                alt="Perfect Meter Logo"
+                class="invoice-logo">
+        </div>
+
+        <div class="from-area">
+
+            <div class="from-label">FROM</div>
+
+            <div class="shop-name">
+                PERFECT METER
+            </div>
+
+            <div class="shop-address">
+                SHOP NO.01 NETIVALI ROAD NEAR PATRIPOOL<br>
+                KALYAN EAST 421306
+                Dattanagar,DNC Road, Kalavati Temple Road,
+                Behind Water Tank, Opp. ICICI Bank, Dombivli East
+            </div>
+
+            <div class="shop-contact">
+                MOB. 9594102030<br>
+            </div>
+
+        </div>
+
+        <div class="invoice-heading">
+
+            <div class="invoice-title">
+                INVOICE
+            </div>
+
+            <div class="invoice-type">
+                TAX INVOICE
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+
+
+    <!-- CUSTOMER / INVOICE INFORMATION -->
+
+    <div class="info-section">
+
+        <div class="bill-to">
+
+            <div class="section-label">
+                BILL TO
+            </div>
+
+            <div class="vehicle-number">
+                ${vehicleNumber}
+            </div>
+
+        </div>
+
+
+        <div class="invoice-details">
+
+            <div class="detail-row">
+                <span class="detail-label">INVOICE NO.</span>
+                <span class="detail-value">
+                    ${invoiceNumber}
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">DATE</span>
+                <span class="detail-value">
+                    ${invoiceDate}
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">CURRENCY</span>
+                <span class="detail-value">
+                    INR
+                </span>
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+
+
+    <!-- ITEMS -->
+
+    <div class="items-title">
+        INVOICE ITEMS
+    </div>
+
+    <table class="items-table">
+
+        <thead>
+
+            <tr>
+                <th class="description">Description</th>
+                <th class="qty">QTY</th>
+                <th class="price">Price</th>
+                <th class="amount">Amount</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td class="description">
+
+                    <div class="item-name">
+                        METER CERTIFICATE
+                    </div>
+
+                    <div class="item-note">
+                        with G.S.T.
+                    </div>
+
+                </td>
+
+                <td class="qty">
+                    ${item1Qty}
+                </td>
+
+                <td class="price">
+                    Rs. 145.00
+                </td>
+
+                <td class="amount">
+                    Rs. 145.00
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td class="description">
+
+                    <div class="item-name">
+                        PROGRAM
+                    </div>
+
+                    <div class="item-note">
+                        with G.S.T.
+                    </div>
+
+                </td>
+
+                <td class="qty">
+                    ${item2Qty}
+                </td>
+
+                <td class="price">
+                    Rs. 280.00
+                </td>
+
+                <td class="amount">
+                    Rs. 280.00
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td class="description">
+
+                    <div class="item-name">
+                        LABOUR
+                    </div>
+
+                </td>
+
+                <td class="qty">
+                    ${item3Qty}
+                </td>
+
+                <td class="price">
+                    Rs. 275.00
+                </td>
+
+                <td class="amount">
+                    Rs. 275.00
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <!-- SUMMARY -->
+
+    <div class="summary-section">
+
+        <table class="summary-table">
+
+            <tr>
+
+                <td class="summary-label">
+                    Subtotal
+                </td>
+
+                <td class="summary-value">
+                    Rs. 700.00
+                </td>
+
+            </tr>
+
+            <tr class="total-row">
+
+                <td class="summary-label">
+                    TOTAL
+                </td>
+
+                <td class="summary-value">
+                    ${total}
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        <div class="terms-title">
+            Terms &amp; Conditions
+        </div>
+
+        <div class="terms-text">
+            Goods and services once provided are subject to the applicable
+            terms and conditions.
+        </div>
+
+        <div class="thanks">
+            Thanks for your business.
+        </div>
+
+        <div class="footer-bottom">
+            PERFECT METER
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

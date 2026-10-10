@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Invoice History - Perfect Meter </title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            height: 68px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 45px;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            background: #1e3a5f;
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .brand-text h2 {
+            font-size: 18px;
+            color: #1e3a5f;
+        }
+
+        .brand-text span {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #374151;
+            border: 1px solid #d1d5db;
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            background: #f3f4f6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-header {
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+
+        .page-header p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .history-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        }
+
+        .search-section {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #1e3a5f;
+            box-shadow: 0 0 0 2px rgba(30, 58, 95, 0.08);
+        }
+
+        .search-button {
+            background: #1e3a5f;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background: #274d78;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f8fafc;
+            color: #374151;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: left;
+            padding: 14px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+
+        .vehicle {
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+
+        .amount {
+            font-weight: 600;
+        }
+
+        .download-button {
+            display: inline-block;
+            text-decoration: none;
+            background: #1e3a5f;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        .download-button:hover {
+            background: #274d78;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 45px 20px;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 0 18px;
+            }
+
+            .brand-text span {
+                display: none;
+            }
+
+            .container {
+                margin: 25px auto;
+            }
+
+            .history-card {
+                padding: 20px;
+            }
+
+            .search-section {
+                flex-direction: column;
+            }
+
+            .search-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                PM
+            </div>
+
+            <div class="brand-text">
+
+                <h2>Perfect Meter</h2>
+
+                <span>InvoiceDesk</span>
+
+            </div>
+
+        </div>
+
+        <a href="/dashboard" class="back-link">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="page-header">
+
+            <h1>Invoice History</h1>
+
+            <p>
+                Search and download previously generated invoices.
+            </p>
+
+        </div>
+
+
+        <div class="history-card">
+
+            <div class="search-section">
+
+                <input
+                    type="text"
+                    class="search-input"
+                    placeholder="Enter vehicle number"
+                >
+
+                <button class="search-button">
+                    Search
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Vehicle Number</th>
+
+                            <th>Invoice Date</th>
+
+                            <th>Total Amount</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td colspan="4">
+
+                                <div class="empty-message">
+
+                                    No invoices found.
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
